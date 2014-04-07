@@ -36,6 +36,10 @@ Open FGLPreloader.hx, adjust any or all optional parameters.
     playbuttontext: 0xFFFFFF, // play button text color
     playbuttonborder: 0xFFFFFF // play button border color
 
+### Example:
+![Loading](http://i.imgur.com/wSnBhf4.png)
+![Loaded](http://i.imgur.com/b0jmOJR.png)
+
 ### License:
 
 The MIT License (MIT)
