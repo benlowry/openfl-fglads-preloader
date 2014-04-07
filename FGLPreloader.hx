@@ -7,8 +7,7 @@ import flash.events.Event;
 import flash.Lib;
 import openfl.Assets;
 
-@:bitmap("../assets/images/adbackground.jpg") class AdBG extends BitmapData { }
-
+@:bitmap("../assets/images/adbackground.jpg") class AdBG extends BitmapData { } 
 
 class FGLPreloader extends NMEPreloader
 {
@@ -55,18 +54,23 @@ class FGLPreloader extends NMEPreloader
         addChild(wrapper);
     }
 
+    // required for OpenFL ApplicationMain.hx
     override public function onUpdate(bytesLoaded:Int, bytesTotal:Int)
     {
     }
 
+    // required for OpenFL ApplicationMain.hx
     override public function onInit()
     {
     }
 
+    // required for OpenFL ApplicationMain.hx
     override public function onLoaded()
     {
     }
 
+    // called when the ad closes or errors, OpenFL then proceeds 
+    // to add your own document class to the stage as normal
     private function adFinished(e:Event)
     {
         dispatchEvent (new Event (Event.COMPLETE));
