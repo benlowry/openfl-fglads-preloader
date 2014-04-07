@@ -13,7 +13,6 @@ import openfl.Assets;
 class FGLPreloader extends NMEPreloader
 {
     private var wrapper:FGLWrapper;
-    public static var temp:Int = 0;
 
     public function new()
     {
@@ -28,6 +27,7 @@ class FGLPreloader extends NMEPreloader
 
         wrapper = new FGLWrapper(
         {
+            adid: "FGL-20027885",
             gametitle: Settings.NAME + " Jigsaw Puzzles",
             developer: "PuzzleBoss", // your name
             developerlink: "http://puzzleboss.com/?from=" + Settings.PACKAGE, // your url
