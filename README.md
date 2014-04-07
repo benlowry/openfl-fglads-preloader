@@ -11,7 +11,8 @@ to include your own game, developer and sponsor branding.
 
 ### Usage:
 Copy the three FGL*.hx files into your project, and then in your project's xml file add the preloader:
-< preloader name="FGLPreloader" / >
+
+    < preloader name="FGLPreloader" / >
 
 ### Customization:
 Open FGLPreloader.hx, adjust any or all optional parameters including your FGL ad id.
