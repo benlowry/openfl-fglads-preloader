@@ -10,7 +10,7 @@ to include your own game, developer and sponsor branding.
 - fully customizable appearance and behavior
 
 ### Usage:
-In your project's xml file:
+Copy the three FGL*.hx files into your project, and then in your project's xml file add the preloader:
 < preloader name="FGLPreloader" / >
 
 ### Customization:
