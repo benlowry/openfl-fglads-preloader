@@ -60,6 +60,11 @@ class FGLWrapper extends Sprite
             _warnings.push("Please set options.oncomplete with your callback function else the ad cannot exit");
         }
 
+        if(_options.adid == null)
+        {
+            _warnings.push("You did not include your FGL ad id");
+        }
+
         addEventListener(Event.ADDED_TO_STAGE, init);
         addEventListener(Event.REMOVED_FROM_STAGE, dispose);
     }
@@ -177,7 +182,7 @@ class FGLWrapper extends Sprite
         adcontainer.y = adbg.y + 4;
         addChild(adcontainer);
 
-        var ads = new FGLAds(adcontainer, "FGL-20027885", adcontainer.x, adcontainer.y);
+        var ads = new FGLAds(adcontainer, _options.adid, adcontainer.x, adcontainer.y);
         ads.addEventListener(FGLAds.EVT_API_READY,  function(e:Event)
         {
             ads.showAdPopup();

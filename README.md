@@ -14,7 +14,7 @@ In your project's xml file:
 <preloader name="FGLPreloader" />
 
 ### Customization:
-Open FGLPreloader.hx, adjust any or all optional parameters.
+Open FGLPreloader.hx, adjust any or all optional parameters including your FGL ad id.
 
     gametitle: "", // the name of your game
     developer: "", // developer branding
