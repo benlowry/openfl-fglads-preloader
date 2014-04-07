@@ -16,6 +16,7 @@ In your project's xml file:
 ### Customization:
 Open FGLPreloader.hx, adjust any or all optional parameters including your FGL ad id.
 
+	adid: "FGL-XXXXXXXX", // your FGL ad id
     gametitle: "", // the name of your game
     developer: "", // developer branding
     developerlink: "", // developer link
