@@ -42,6 +42,7 @@ class FGLWrapper extends Sprite
         _options = options == null ? {} : options;
         _warnings = new Array<String>();
 
+        // required values
         if(_options.gametitle == null)
         {
             _warnings.push("Please set options.gametitle in your ad initialization");
@@ -65,21 +66,7 @@ class FGLWrapper extends Sprite
             _warnings.push("You did not include your FGL ad id");
         }
 
-        addEventListener(Event.ADDED_TO_STAGE, init);
-        addEventListener(Event.REMOVED_FROM_STAGE, dispose);
-    }
-
-    private function init(e:Event):Void
-    {
-        removeEventListener(Event.ADDED_TO_STAGE, init);
-
-        // make sure we can do something here
-        if( Lib.current.stage.stageHeight < 300)
-        {
-            _warnings.push("Your game must be at least 400x300 pixels");
-        }
-
-        if( Lib.current.stage.stageWidth < 400)
+        if(Lib.current.stage.stageHeight < 300 || Lib.current.stage.stageWidth < 400)
         {
             _warnings.push("Your game must be at least 400x300 pixels");
         }
@@ -97,8 +84,34 @@ class FGLWrapper extends Sprite
             return;
         }
 
+       // default values
+        if(_options.background == null) { _options.background = 0x1C3755; }
+        if(_options.fgltext == null) { _options.fgltext = 0x999999; }
+        if(_options.fglbackground == null) { _options.fglbackground = 0x000000; }
+        if(_options.titletext == null) { _options.titletext = 0xCCCCCC; }
+        if(_options.titlebackground == null) { _options.titlebackground = 0x000000; }
+        if(_options.preloaderbackground == null) { _options.preloaderbackground = 0x000000; }
+        if(_options.preloaderbar == null) { _options.preloaderbar = 0x253240; }
+        if(_options.preloadertext == null) { _options.preloadertext = 0xCCCCCC; }
+        if(_options.playbuttonbackground == null) { _options.playbuttonbackground = 0x000000; }
+        if(_options.playbuttonborder == null) { _options.playbuttonborder = 0xFFFFFF; }
+        if(_options.playbuttontext == null) { _options.playbuttontext = 0xCCCCCC; }
+        if(_options.adbackground == null) { _options.adbackground = 0x000000; }
+        if(_options.developerlink == null) { _options.developerlink = "#"; }
+        if(_options.developer == null) { _options.developer = ""; }
+        if(_options.sponsorlink == null) { _options.sponsorlink = "#"; }
+        if(_options.sponsor == null) { _options.sponsor = ""; }
+
+        addEventListener(Event.ADDED_TO_STAGE, init);
+        addEventListener(Event.REMOVED_FROM_STAGE, dispose);
+    }
+
+    private function init(e:Event):Void
+    {
+        removeEventListener(Event.ADDED_TO_STAGE, init);
+
         // the background color, which we will make configurable
-        graphics.beginFill(_options.background == null ? 0x1C3755 : _options.background, 1);
+        graphics.beginFill(_options.background, 1);
         graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
         graphics.endFill();
 
@@ -112,7 +125,7 @@ class FGLWrapper extends Sprite
 
         // set up the fgl link
         var pformat = new TextFormat();
-        pformat.color = _options.fgltextcolor == null ? 0x999999 : _options.fgltextcolor;
+        pformat.color = _options.fgltext;
         pformat.font = "Arial";
         pformat.size = 10;
 
@@ -124,11 +137,11 @@ class FGLWrapper extends Sprite
         fgl.y = Lib.current.stage.stageHeight - Std.Std.int(fgl.height);
         fgl.setTextFormat(pformat);
         fgl.selectable = false;
-        fgl.textColor = _options.fgltext == null ? 0x999999 : _options.fgltext;
+        fgl.textColor = _options.fgltext;
         addChild(fgl);
 
         var bg = new Sprite();
-        bg.graphics.beginFill(_options.background == null ? 0x000000 : _options.background);
+        bg.graphics.beginFill(_options.fglbackground);
         bg.graphics.drawRect(0, 0, Std.int(fgl.width) + 4, Std.int(fgl.height) + 2);
         bg.graphics.endFill();
         bg.x = Lib.current.stage.stageWidth - bg.width;
@@ -137,22 +150,22 @@ class FGLWrapper extends Sprite
 
         // set up the game title, sponsor and developer link
         var devformat = new TextFormat();
-        devformat.color = _options.titletext == null ?  0xCCCCCC : _options.titletext;
+        devformat.color = _options.titletext;
         devformat.font = "Arial";
         devformat.size = 12;
 
-        var devtext = _options.gametitle + " by <a href=\"" + (_options.developerlink == null ? "#" : _options.developerlink) + "\" target=\"_blank\"><b>" + _options.developer + "</b></a>";
+        var devtext = _options.gametitle + " by <a href=\"" + _options.developerlink + "\" target=\"_blank\"><b>" + _options.developer + "</b></a>";
 
-        if(_options.sponsor != null)
+        if(_options.sponsor != "")
         {
-            devtext += " and <a href=\"" + (_options.sponsorlink == null ? "#" : _options.sponsorlink) + "\" target=\"_blank\"><b>" + _options.sponsor + "</b></a>";
+            devtext += " and <a href=\"" + _options.sponsorlink + "\" target=\"_blank\"><b>" + _options.sponsor + "</b></a>";
         }
 
         var devblurb = new TextField();
         devblurb.autoSize = TextFieldAutoSize.LEFT;
         devblurb.embedFonts = false;
         devblurb.htmlText =  devtext;
-        devblurb.textColor = _options.titletext == null ? 0xCCCCCC : _options.titletext;
+        devblurb.textColor = _options.titletext;
         devblurb.x = 2;
         devblurb.y = 0;
         devblurb.setTextFormat(devformat);
@@ -160,7 +173,7 @@ class FGLWrapper extends Sprite
         addChild(devblurb);
 
         var devblurbbg = new Sprite();
-        devblurbbg.graphics.beginFill(_options.titlebackground == null ? 0x000000 : _options.titlebackground, 0.5);
+        devblurbbg.graphics.beginFill(_options.titlebackground, 0.5);
         devblurbbg.graphics.drawRect(0, 0, Std.int(devblurb.width) + 6, Std.int(devblurb.height) + 2);
         devblurbbg.graphics.endFill();
         devblurbbg.x = 0;
@@ -169,7 +182,7 @@ class FGLWrapper extends Sprite
 
         // set up the ad box
         var adbg = new Sprite();
-        adbg.graphics.beginFill(_options.adbackground == null ? 0x000000 : _options.adbackground, 1);
+        adbg.graphics.beginFill(_options.adbackground, 1);
         adbg.graphics.drawRect(0, 0, 308, 258);
         adbg.x = Std.int((Lib.current.stage.stageWidth - 308) / 2);
         adbg.y = Std.int((Lib.current.stage.stageHeight - 258) / 2) - 20;
@@ -190,21 +203,21 @@ class FGLWrapper extends Sprite
 
         // set up the timer/loading bar
         var loadingbg = new Sprite();
-        loadingbg.graphics.beginFill(_options.preloaderbackground == null ? 0x000000 : _options.preloaderbackground, 1);
+        loadingbg.graphics.beginFill(_options.preloaderbackground, 1);
         loadingbg.graphics.drawRect(0, 0, 150, 20);
         loadingbg.x = Std.int((Lib.current.stage.stageWidth - 150) / 2);
         loadingbg.y = adbg.y + adbg.height + 30;
         addChild(loadingbg);
 
         _loadingBar = new Sprite();
-        _loadingBar.graphics.beginFill(_options.preloaderbar == null ? 0x253240 : _options.preloaderbar, 1);
+        _loadingBar.graphics.beginFill(_options.preloaderbar, 1);
         _loadingBar.graphics.drawRect(0, 0, 148, 18);
         _loadingBar.x = loadingbg.x + 1;
         _loadingBar.y = loadingbg.y + 1;
         addChild(_loadingBar);
 
         var loadingformat = new TextFormat();
-        loadingformat.color = _options.preloadertext == null ? 0x666666 : _options.preloadertext;
+        loadingformat.color = _options.preloadertext;
         loadingformat.font = "Arial";
         loadingformat.size = 10;
         loadingformat.align = TextFormatAlign.CENTER;
@@ -212,7 +225,7 @@ class FGLWrapper extends Sprite
         var loadingblurb = new TextField();
         loadingblurb.embedFonts = false;
         loadingblurb.htmlText =  "LOADING";
-        loadingblurb.textColor = _options.preloadertext == null ? 0xCCCCCC : _options.preloadertext;
+        loadingblurb.textColor = _options.preloadertext;
         loadingblurb.width = loadingbg.width;
         loadingblurb.x = loadingbg.x;
         loadingblurb.y = loadingbg.y + 2;
@@ -251,16 +264,16 @@ class FGLWrapper extends Sprite
 
         // play time
         var format = new TextFormat();
-        format.color = _options.playbuttontext == null ? 0xCCCCCC : _options.playbuttontext;
+        format.color = _options.playbuttontext;
         format.font = "Arial";
         format.size = 12;
         format.align = TextFormatAlign.CENTER;
 
         _button = new Sprite();
-        _button.graphics.beginFill(_options.playbuttonbackground == null ? 0x000000 : _options.playbuttonbackground, 1);
+        _button.graphics.beginFill(_options.playbuttonbackground, 1);
         _button.graphics.drawRect(0, 0, 150, 22);
         _button.graphics.endFill();
-        _button.graphics.lineStyle(0.1, _options.playbuttonborder == null ? 0xFFFFFF : _options.playbuttonborder, 0.5);
+        _button.graphics.lineStyle(0.1, _options.playbuttonborder, 0.5);
         _button.graphics.moveTo(0, 0);
         _button.graphics.lineTo(_button.width, 0);
         _button.graphics.lineTo(_button.width, _button.height);
@@ -277,7 +290,7 @@ class FGLWrapper extends Sprite
         addChild(_button);
 
         _buttonOverlay = new Sprite();
-        _buttonOverlay.graphics.lineStyle(0.1, _options.playbuttonborder == null ? 0xFFFFFF : _options.playbuttonborder, 1);
+        _buttonOverlay.graphics.lineStyle(0.1, _options.playbuttonborder, 1);
         _buttonOverlay.graphics.moveTo(0, 0);
         _buttonOverlay.graphics.lineTo(_button.width, 0);
         _buttonOverlay.graphics.lineTo(_button.width, _button.height);
@@ -292,7 +305,7 @@ class FGLWrapper extends Sprite
         _buttonLabel.width = _button.width;
         _buttonLabel.height = _button.height;
         _buttonLabel.setTextFormat(format);
-        _buttonLabel.textColor = _options.playbuttontext == null ? 0xCCCCCC : _options.playbuttontext;
+        _buttonLabel.textColor = _options.playbuttontext;
         _buttonLabel.selectable = false;
         _buttonLabel.multiline = false;
         _buttonLabel.y = 2;
