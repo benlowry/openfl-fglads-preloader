@@ -21,7 +21,7 @@ package
 	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	
-	public class Ads extends Sprite
+	public class FGLAdWrapper extends Sprite
 	{
 		private var _options:Object;
 		private var _warnings:Vector.<String>;
@@ -39,7 +39,7 @@ package
 		private var _buttonLabel:TextField;
 		private var _loadTimer:Timer;
 
-		public function Ads(options:Object = null)
+		public function FGLAdWrapper(options:Object = null)
 		{
 			_options = options || {};
 			_warnings = new Vector.<String>();
