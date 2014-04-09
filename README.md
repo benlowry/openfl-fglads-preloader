@@ -9,13 +9,18 @@ to include your own game, developer and sponsor branding.
 - preloading bar converts into play button after the game is finished loading *and* at least 15 seconds have passed
 - fully customizable appearance and behavior
 
-### Usage:
+### Usage (Haxe):
 Copy the three FGL*.hx files into your project, and then in your project's xml file add the preloader:
 
     < preloader name="FGLPreloader" / >
 
+## Usage (AS3)
+Copy the FGLWrapper.as file into your project and then add to your movie with:
+addChild(new FGLWrapper({ options });
+
 ### Customization:
-Open FGLPreloader.hx, adjust any or all optional parameters including your FGL ad id.
+Adjust any or all optional parameters including your FGL ad id in Preloader.hx or when
+instantiating the ActionScript FGLWrapper:
 
 	adid: "FGL-XXXXXXXX", // your FGL ad id
     gametitle: "", // the name of your game
