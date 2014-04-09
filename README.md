@@ -1,7 +1,7 @@
-# FGLAds for OpenFL
-## With Mochi Media style preloader
+# FGLAds for OpenFL (Haxe) and native AS3
+### With Mochi Media style preloader
 
-A preloader wrapper for the [FGLAds](http://fgl.com/) service for [OpenFL](http://openfl.org/).  Contains rich customization 
+A preloader wrapper in AS3 and Haxe for the [FGLAds](http://fgl.com/) service for [OpenFL](http://openfl.org/).  Contains rich customization 
 to include your own game, developer and sponsor branding.
 
 ### Features include:
