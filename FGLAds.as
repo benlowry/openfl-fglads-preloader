@@ -362,6 +362,7 @@ package
 		public function remove():void
 		{
 			if(parent) {
+				// TODO: deactivate the ads here
 				parent.removeChild(this);
 			}
 		}
@@ -372,8 +373,6 @@ package
 
 		private function dispose(e:Event):void
 		{
-	        FGLAds.remove();
-
 	        removeEventListener(Event.ADDED_TO_STAGE, init);
 	        removeEventListener(Event.REMOVED_FROM_STAGE, dispose);
 	        removeEventListener(Event.ENTER_FRAME, refresh);
