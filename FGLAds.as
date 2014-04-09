@@ -114,7 +114,7 @@ package
 			graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
 			graphics.endFill();
 		
-			// set up the playtomic link
+			// set up the fgl link
 			var pformat:TextFormat = new TextFormat();
 			pformat.color = _options.fgltext;
 			pformat.font = "Arial";	
@@ -124,15 +124,15 @@ package
 			fgl.embedFonts = false;
 			fgl.autoSize = TextFieldAutoSize.RIGHT;
 			fgl.htmlText = "<a href=\"https://fgl.com/?game=" + _options.adid + "\" target=\"_blank\">ads by fgl</a>";
-			fgl.x = stage.stageWidth - int(playtomic.width) - 2;
-			fgl.y = stage.stageHeight - int(playtomic.height);
+			fgl.x = stage.stageWidth - int(fgl.width) - 2;
+			fgl.y = stage.stageHeight - int(fgl.height);
 			fgl.setTextFormat(pformat);
 			fgl.selectable = false;
 			fgl.textColor = _options.fgltext;
 			addChild(fgl);
 			
 			var fglbg:Sprite = new Sprite();
-			fglbg.graphics.beginFill(_options.playtomicbackground);
+			fglbg.graphics.beginFill(_options.fglbackground);
 			fglbg.graphics.drawRect(0, 0, int(fgl.width) + 4, int(fgl.height) + 2);
 			fglbg.graphics.endFill();
 			fglbg.x = stage.stageWidth - fglbg.width;
@@ -145,10 +145,10 @@ package
 			devformat.font = "Arial";		
 			devformat.size = "12";
 			
-			var devtext:String = _options.gametitle + " by <a href=\"" + (_options.developerlink || "#") + "\" target=\"_blank\"><b>" + _options.developer + "</b></a>";
+			var devtext:String = _options.gametitle + " by <a href=\"" + _options.developerlink + "\" target=\"_blank\"><b>" + _options.developer + "</b></a>";
 			
 			if(_options.sponsor) {
-				devtext += " and <a href=\"" + (_options.sponsorlink || "#") + "\" target=\"_blank\"><b>" + _options.sponsor + "</b></a>";
+				devtext += " and <a href=\"" + _options.sponsorlink + "\" target=\"_blank\"><b>" + _options.sponsor + "</b></a>";
 			}
 			
 			var devblurb:TextField = new TextField();
