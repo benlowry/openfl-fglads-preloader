@@ -1,4 +1,4 @@
-# FGLAds for OpenFL (Haxe) and native AS3
+# FGLAds for OpenFL and AS3
 ### With Mochi Media style preloader
 
 A preloader wrapper in AS3 and Haxe for the [FGLAds](http://fgl.com/) service for [OpenFL](http://openfl.org/).  Contains rich customization 
@@ -16,7 +16,8 @@ Copy the three FGL*.hx files into your project, and then in your project's xml f
 
 ## Usage (AS3)
 Copy the FGLWrapper.as file into your project and then add to your movie with:
-addChild(new FGLWrapper({ options });
+    
+    addChild(new FGLWrapper({ options });
 
 ### Customization:
 Adjust any or all optional parameters including your FGL ad id in Preloader.hx or when
