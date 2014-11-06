@@ -67,6 +67,7 @@ class FGLPreloader extends NMEPreloader
     // required for OpenFL ApplicationMain.hx
     override public function onLoaded()
     {
+        wrapper.preloaderLoaded = true;
     }
 
     // called when the ad closes or errors, OpenFL then proceeds 
