@@ -120,7 +120,7 @@ class FGLAds extends Sprite
         _storedGameID = gameID;
 
         _loader = new Loader();
-        //_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onLoadingError);
+        _loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onLoadingError);
         _loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadingComplete);
 
         try
