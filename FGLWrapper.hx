@@ -34,6 +34,7 @@ class FGLWrapper extends Sprite
     private var _buttonAnim:Timer;
     private var _buttonLabel:TextField;
     private var _loaderInfo:LoaderInfo;
+    public var preloaderLoaded:Bool = false;
 
     public function new(options:Dynamic = null)
     {
@@ -252,7 +253,7 @@ class FGLWrapper extends Sprite
     {
         _loadingBar.width = Math.min(_timerProgress, _loadProgress) * 148;
 
-        if(_timerLoaded && _loaderLoaded)
+        if(_timerLoaded && _loaderLoaded && preloaderLoaded)
         {
             ready(e);
         }
