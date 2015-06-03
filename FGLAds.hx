@@ -108,6 +108,8 @@ class FGLAds extends Sprite
             return;
         }
 
+        Security.allowDomain("*");
+        Security.allowInsecureDomain("*");			
         Security.loadPolicyFile("http://ads.fgl.com/crossdomain.xml");
 
         _x = px;
